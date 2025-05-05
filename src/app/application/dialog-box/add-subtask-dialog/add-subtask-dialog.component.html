@@ -1,0 +1,15 @@
+<div class="p-4">
+    <form (ngSubmit)="submitSubtask()">
+        <div class="header fs-25 text-center"><span *ngIf="!editMode">Add</span><span *ngIf="editMode">Edit</span> Sub Task</div>
+        <input type="text" [formControl]="subTask" (input)="subTaskEntered()" placeholder="Please Enter Sub Task" class="mt-2 textfield w-100">
+        
+        <div *ngIf="validationError" class="validationError">
+            Sub Task can't be empty
+        </div>
+
+        <div class="mt-4 d-flex justify-content-end">
+            <button type="button" (click)="closeDialog()" class="secondary-button">Cancel</button>
+            <button type="submit" class="primary-button ms-2"><span *ngIf="!editMode">Add</span><span *ngIf="editMode">Update</span></button>
+        </div>
+    </form>
+</div>  

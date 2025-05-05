@@ -1,0 +1,104 @@
+.outer-container{
+    height: 100vh;
+    width: 100vw;
+    background: #9b2a81;
+    background: linear-gradient(90deg, rgba(155, 42, 129, 1) 0%, rgba(87, 199, 133, 1) 59%, rgba(133, 122, 255, 1) 100%, rgba(255, 0, 17, 0.99) 100%);
+}
+
+.inner-container{
+    background-color: white;
+    border-radius: 7px;
+}
+
+.right-container{
+    background-color: rgb(235, 235, 235);
+}
+
+.header{
+    color: #23c6b1;
+}
+
+.taskList-container{
+    overflow-y: auto;
+    max-height: 80%;
+}
+
+.taskName-container{
+    border-radius: 6px;
+    background-color: #23c6b1;
+    color: white;
+    border: 2px solid white
+}
+
+.taskName-container:hover{
+    cursor: pointer;
+    background-color: #026e60;
+}
+
+.selectedTaskName{
+    background-color: #026e60;
+}
+
+.button-container{
+    margin-top: auto;
+}
+
+.setting-icon{
+    transition: transform .8s ease;
+}
+
+.setting-icon:hover{
+    color: #009f8a;
+    cursor: pointer;
+    font-size: large;
+    transform: rotate(60deg);
+}
+
+.add-subtask-btn{
+    color: #23c6b1;
+    font-size: 40px;
+    transition: transform .5 ease;
+}
+
+.add-subtask-btn:hover{
+    color: #009f8a;
+    font-size: 45px;
+    cursor: pointer;
+}
+
+.subTaskList-container{
+    overflow-y: auto;
+    max-height: 80%;
+}
+
+.subTaskName-container{
+    border-radius: 6px;
+    background-color: white; 
+    color: grey;;
+    border: 2px solid rgb(185, 185, 185);
+    max-height: 50px;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.defaultText{
+    font-size: 12px;
+    color: grey;
+}
+
+.modifyTask{
+    background-color: white;
+    border-radius: 4px;
+    height: 8vh;
+    width: 8vw;
+    position: absolute;
+    right: 5px;
+    top: 30px;
+}
+
+.modifyItem:hover{
+    background-color: #23c6b1;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}

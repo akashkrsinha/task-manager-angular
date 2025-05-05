@@ -1,0 +1,60 @@
+<div class="outer-container d-flex justify-content-center align-items-center">
+    <div class="inner-container shadow h-80 w-65 d-flex">
+        <!-- Left container -->
+        <div class="left-container w-30 h-100 p-4 d-flex flex-column">
+            <div class="header fs-25 w-500">Task List</div>
+            <div class="taskList-container pb-2 mt-1">
+                <div *ngFor="let task of taskList; let idx = index;" (click)="taskClicked(idx)" class="taskName-container p-2 mt-1" [ngClass]="{ selectedTaskName: idx == selectedTaskIndex }">
+                    {{task?.taskName}}
+                </div>
+
+                <!-- Default message, if no task is available -->
+                <div *ngIf="taskList.length == 0" class="defaultText">No task available. Please click on Add Task button to create a new task.</div>
+            </div>
+
+            <div class="button-container d-flex justify-content-center">
+                <button (click)="openAddTaskDialog()" class="primary-button">
+                    <i class="fa fa-plus fs-12"></i>
+                    Add Task
+                </button>
+            </div>
+        </div>
+
+        <!-- Right container -->
+        <div class="right-container w-70 h-100 py-4 px-5">
+            <div *ngIf="taskList.length" class="d-flex flex-column right-container h-100">
+                <div class="d-flex justify-content-between align-items-center position-relative">
+                    <div class="header fs-25 w-500">Sub Tasks</div>
+                     
+                    <i (click)="modifyTask()" class="fa fa-cog setting-icon" aria-hidden="true" title="Modify Task"></i>
+                    
+                    <div *ngIf="viewModifyTask" class="modifyTask p-1">
+                        <div (click)="editTask()" class="modifyItem px-2"><i class="fa fa-pencil me-1" aria-hidden="true"></i> Edit</div>
+                        <div (click)="deleteTask()" class="modifyItem px-2"><i class="fa fa-trash-o me-1" aria-hidden="true"></i> Delete</div>
+                    </div>
+                </div>
+                
+                <div class="subTaskList-container pb-2 mt-1">
+                    <div *ngFor="let subTask of taskList?.[selectedTaskIndex]?.subTasks; let idx = index;" class="subTaskName-container d-flex justify-content-between p-2 mt-1">
+                        <div (click)="subTaskClicked(idx)" class="w-90 pointer">
+                            <div *ngIf="!subTask?.isCompleted">{{subTask?.subTaskName}}</div>
+                            <del *ngIf="subTask?.isCompleted">{{subTask?.subTaskName}}</del>
+                        </div>
+
+                        <div class="d-flex align-items-center w-10 text-wrap">
+                            <i (click)="editSubtask(idx)" class="fa fa-pencil me-2 pointer" title="Edit" aria-hidden="true"></i>
+                            <i (click)="deleteSubtask(idx)" class="fa fa-trash-o pointer" title="Delete" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Default message, if no subtask is available -->
+                    <div *ngIf="taskList?.[selectedTaskIndex]?.subTasks?.length == 0" class="defaultText">No sub task available. Please click on plus icon to create a new sub task.</div>
+                </div>
+
+                <div class="mt-auto d-flex justify-content-end align-items-center">
+                    <i (click)="openAddSubTaskDialog()" class="fa fa-plus-circle add-subtask-btn" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

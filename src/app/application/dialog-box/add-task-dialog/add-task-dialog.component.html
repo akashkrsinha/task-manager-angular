@@ -1,0 +1,16 @@
+<div class="p-4">
+    <form (ngSubmit)="createTask()">
+        <div class="header fs-25  text-center"><span *ngIf="!editMode">Add Task</span> <span *ngIf="editMode">Edit Task Name</span></div>
+        <input type="text" [formControl]="taskName" (input)="taskNameEntered()" placeholder="Enter Task Name"
+            class="mt-2 textfield w-100">
+        
+        <div *ngIf="validationError" class="validationError">
+            Task Name can't be empty
+        </div>
+        
+        <div class="mt-4 d-flex justify-content-end">
+            <button type="button" (click)="closeDialog()" class="secondary-button">Cancel</button>
+            <button type="submit" class="primary-button ms-2"><span *ngIf="!editMode">Submit</span> <span *ngIf="editMode">Update</span></button>
+        </div>
+    </form>
+</div>

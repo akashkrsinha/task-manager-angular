@@ -1,0 +1,27 @@
+.main {
+    height: 100vh;
+    width: 100vw;
+    background: #9b2a81;
+    background: linear-gradient(90deg, rgba(155, 42, 129, 1) 0%, rgba(87, 199, 133, 1) 59%, rgba(133, 122, 255, 1) 100%, rgba(255, 0, 17, 0.99) 100%);
+}
+
+.center-box{
+    height: 60vh;
+    width: 40vw;
+    background-color: white;
+}
+
+.password-container{
+    position: relative;
+}
+
+.password-icon{
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.logintext{
+    color: #23c6b1;
+    cursor: pointer;
+}
