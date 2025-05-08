@@ -23,16 +23,16 @@ $primary-btn: rgb(146, 0, 175);
     font-size: 12px;
 }
 
-.w-100 {
-    width: 100%;
-}
-
-.w-65 {
-    width: 65%;
+.w-10 {
+    width: 10%;
 }
 
 .w-30 {
     width: 30%;
+}
+
+.w-65 {
+    width: 65%;
 }
 
 .w-70 {
@@ -43,8 +43,8 @@ $primary-btn: rgb(146, 0, 175);
     width: 90%;
 }
 
-.w-10 {
-    width: 10%;
+.w-100 {
+    width: 100%;
 }
 
 .h-100 {
@@ -122,4 +122,32 @@ $primary-btn: rgb(146, 0, 175);
 
 .pointer {
     cursor: pointer;
+}
+
+.width-left{
+    width: 45%;
+}
+
+.width-right{
+    width: 55%;
+}
+
+@media (min-width: 576px){
+    .width-left{
+        width: 40%;
+    }
+
+    .width-right{
+        width: 60%;
+    }
+}
+
+@media (min-width: 768px){
+    .width-left{
+        width: 30%;
+    }
+
+    .width-right{
+        width: 70%;
+    }
 }
