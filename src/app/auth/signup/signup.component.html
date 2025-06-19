@@ -5,6 +5,16 @@
                 <div class="header fs-4 fs-md-3 w-100 text-center fw-bold">Signup</div>
 
                 <div class="field-container d-flex flex-column">
+                    <input formControlName="name" type="text" placeholder="Enter Name" class="textfield mt-2 mt-lg-3">
+                     <!-- Error message for Name field -->
+                    <div class="validationError"
+                        *ngIf="signupForm.get('name')?.touched && signupForm.get('name')?.invalid">
+                        <div *ngIf="signupForm.get('name')?.errors?.['required']">Name is required</div>
+                        <div
+                            *ngIf="signupForm.get('name')?.errors?.['pattern']">
+                            Please enter alphabets only</div>
+                    </div>
+
                     <input formControlName="email" type="email" placeholder="Enter Email" class="textfield mt-2 mt-lg-3">
 
                     <!-- Error message for Email field -->
@@ -13,7 +23,7 @@
                         <div *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</div>
                         <div
                             *ngIf="signupForm.get('email')?.errors?.['email'] || signupForm.get('email')?.errors?.['pattern']">
-                            ">Email is not valid</div>
+                            Email is not valid</div>
                     </div>
 
                     <div class="password-container">

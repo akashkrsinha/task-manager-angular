@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { isLoginGuard } from './guards/is-login.guard';
 
 const routes: Routes = [
-  {  path: '', redirectTo: 'login', pathMatch: 'full' },
+  // {  path: '', redirectTo: 'login', pathMatch: 'full' },
   {  path: 'signup', component: SignupComponent, canActivate: [isLoginGuard] },
   { path: 'login', component: LoginComponent, canActivate: [isLoginGuard] }
 ];

@@ -1,6 +1,17 @@
 <div class="outer-container d-flex justify-content-center align-items-center">
     <div class="row w-100 h-100">
-        <div class=" d-flex justify-content-center align-items-center">
+        <div class="d-flex flex-column align-items-center">
+
+            <div *ngIf="!loggedInUserName" class="auth-btn-container w-100 h-10 align-items-center me-5">
+                <div (click)="loginClicked()" class="auth-btn pointer rounded-pill me-2 px-2 py-1">Login</div>
+                <div (click)="signupClicked()" class="auth-btn pointer rounded-pill px-2 py-1">Signup</div>
+            </div>
+
+            <div *ngIf="loggedInUserName" class="auth-btn-container w-100 h-10 align-items-center me-5 user-detail">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <div class="ms-2">Hi, {{loggedInUserName}}</div>
+            </div>
+
             <div class="inner-container shadow h-80 col-12 col-md-10 col-lg-8 d-flex">
                 <!-- Left container -->
                 <div class="left-container width-left h-100 p-2 p-lg-4 d-flex flex-column">
@@ -70,6 +81,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div *ngIf="loggedInUserName" class="auth-btn-container w-100 h-10 align-items-center me-5">
+                <button (click)="logout()" class="auth-btn rounded px-3 logout-btn"><i class="fa fa-sign-out"></i>
+                    Logout</button>
             </div>
         </div>
     </div>

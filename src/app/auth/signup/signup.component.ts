@@ -14,6 +14,7 @@ export class SignupComponent {
   showConfirmPassword: boolean = true;
   
   signupForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.pattern('^[A-Za-z ]+$')]),
     email : new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')]),
     password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')]),
     confirmPassword: new FormControl('', [Validators.required])

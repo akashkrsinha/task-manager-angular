@@ -26,21 +26,20 @@ export class LoginComponent {
   }
 
   submitClicked() {
-    console.log(this.loginForm);
-
     const isEmailExist = this.signupService.signupCredentials.some((loginData: any) => loginData.email == this.loginForm.value.email);
 
     if (isEmailExist) {
       this.signupService.signupCredentials.map((loginData: any) => {
-        if (loginData.email == this.loginForm.value.email) {
-          if (loginData.password == this.loginForm.value.password) {
+        if (loginData?.email == this.loginForm.value.email) {
+          if (loginData?.password == this.loginForm.value.password) {
+            sessionStorage.setItem('user-name', `${loginData?.name}`);
             Swal.fire({
-              title: 'Success',
-              text: 'Login Successfully',
+              title: `Welcome ${loginData?.name}!`,
+              text: 'Login Successful',
               icon: 'success',
-              timer: 1000
+              timer: 1500
             });
-            this.router.navigateByUrl('app');
+            this.router.navigateByUrl('');
           }else{
             Swal.fire('Error', 'Invalid login credentials', 'error');
           }
@@ -56,6 +55,6 @@ export class LoginComponent {
   }
 
   loginGuest() {
-    this.router.navigateByUrl('app');
+    this.router.navigateByUrl('');
   }
 }

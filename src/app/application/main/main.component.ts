@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTaskDialogComponent } from '../dialog-box/add-task-dialog/add-task-dialog.component';
 import { AddSubtaskDialogComponent } from '../dialog-box/add-subtask-dialog/add-subtask-dialog.component';
 import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -15,11 +16,14 @@ export class MainComponent {
   selectedTaskIndex: any = undefined;  //Initially we don't know that is any task is added or not in taskList. Thats why we cannot set 0 initially.
   viewModifyTask: boolean = false;
   selectedSubTaskIndex: any = undefined;
+  loggedInUserName: string = '';
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, public router: Router) {
     if (this.taskList.length) {
       this.selectedTaskIndex = this.taskList.length - 1;
     }
+
+    this.loggedInUserName = sessionStorage.getItem('user-name')!;
   }
 
   openAddTaskDialog() {
@@ -57,7 +61,7 @@ export class MainComponent {
 
     dialogRef.afterClosed().subscribe(newSubTask => {
       if (newSubTask) {
-        this.taskList[this.selectedTaskIndex]?.subTasks.push({subTaskName: newSubTask, isCompleted: false});  // Be defalut status will be false for new subtask
+        this.taskList[this.selectedTaskIndex]?.subTasks.push({ subTaskName: newSubTask, isCompleted: false });  // Be defalut status will be false for new subtask
       }
     });
   }
@@ -110,10 +114,10 @@ export class MainComponent {
   subTaskClicked(subTaskIndex: number) {
     this.selectedSubTaskIndex = subTaskIndex;
 
-    this.taskList[this.selectedTaskIndex].subTasks[this.selectedSubTaskIndex].isCompleted = !this.taskList[this.selectedTaskIndex].subTasks[this.selectedSubTaskIndex].isCompleted;    
-    
+    this.taskList[this.selectedTaskIndex].subTasks[this.selectedSubTaskIndex].isCompleted = !this.taskList[this.selectedTaskIndex].subTasks[this.selectedSubTaskIndex].isCompleted;
+
     let status: string = this.taskList[this.selectedTaskIndex].subTasks[this.selectedSubTaskIndex].isCompleted ? 'completed' : 'incomplete';
-    let icon:any = status == 'completed' ? 'success' : 'error';
+    let icon: any = status == 'completed' ? 'success' : 'error';
 
     const Toast = Swal.mixin({
       toast: true,
@@ -126,7 +130,7 @@ export class MainComponent {
     Toast.fire({
       icon: icon,
       title: `Marked as ${status}`
-    });    
+    });
   }
 
   editSubtask(subTaskIndex: number) {
@@ -169,7 +173,38 @@ export class MainComponent {
         Swal.fire('Success', 'Sub Task Deleted Successfully', 'success');
       }
     });
+  }
 
+  loginClicked() {
+    this.router.navigateByUrl('auth/login');
+  }
 
+  signupClicked() {
+    this.router.navigateByUrl('auth/signup');
+  }
+
+  logout() {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Alert!',
+      text: 'Are you sure you want to logout?',
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Success',
+          text: 'You have been logged out successfully',
+          icon: 'success',
+          timer: 1500
+        });
+
+        this.router.navigateByUrl('auth/login');
+        sessionStorage.removeItem('user-name');
+        this.loggedInUserName = '';
+      }
+    })
   }
 }
